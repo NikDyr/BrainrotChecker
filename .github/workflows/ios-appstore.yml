@@ -1,0 +1,73 @@
+
+name: iOS App Store Build & Release
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: macos-latest
+    env:
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+      APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+      APP_STORE_APPLE_ID: ${{ secrets.APP_STORE_APPLE_ID }}
+      BUNDLE_ID: com.puplaplay.braincheck
+      XCODE_PROJECT: Teletester.xcodeproj
+      XCODE_SCHEME: Teletester
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+      - name: Install Fastlane
+        run: gem install fastlane
+      - name: Write App Store Connect API Key to file
+        run: |
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ./AuthKey.p8
+      - name: Set up provisioning profiles
+        run: |
+          fastlane run sync_code_signing
+      - name: Increment build number
+        run: |
+          cd ${{ github.workspace }}
+          LATEST_BUILD_NUMBER=$(fastlane run get_app_store_build_number app_identifier:${{ env.BUNDLE_ID }} username:${{ env.APP_STORE_APPLE_ID }} | grep 'Result:' | awk '{print $2}')
+          agvtool new-version -all $((LATEST_BUILD_NUMBER + 1))
+      - name: Build IPA
+        run: |
+          fastlane run build_ios_app \
+            project:${{ env.XCODE_PROJECT }} \
+            scheme:${{ env.XCODE_SCHEME }} \
+            export_method:app-store
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa
+          path: build/ios/ipa/*.ipa
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild_logs
+          path: /tmp/xcodebuild_logs/*.log
+      - name: Upload .app and .dSYM
+        uses: actions/upload-artifact@v4
+        with:
+          name: derived_data
+          path: |
+            $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+            $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+      - name: Release to App Store
+        env:
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+        run: |
+          fastlane run upload_to_app_store \
+            api_key_path:./AuthKey.p8 \
+            api_key_id:${{ env.APP_STORE_CONNECT_KEY_ID }} \
+            api_key_issuer_id:${{ env.APP_STORE_CONNECT_ISSUER_ID }} \
+            skip_submission:false \
+            submit_for_review:true
