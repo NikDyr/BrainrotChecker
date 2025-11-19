@@ -33,10 +33,7 @@ jobs:
           echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ./AuthKey.p8
       - name: Set up provisioning profiles
         run: |
-          fastlane run sync_code_signing \
-            api_key_path:./AuthKey.p8 \
-            api_key_id:${{ env.APP_STORE_CONNECT_KEY_ID }} \
-            api_key_issuer_id:${{ env.APP_STORE_CONNECT_ISSUER_ID }}
+          fastlane run sync_code_signing api_key_path:./AuthKey.p8
       - name: Increment build number
         run: |
           cd ${{ github.workspace }}
