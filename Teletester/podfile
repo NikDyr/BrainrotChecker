@@ -1,0 +1,15 @@
+platform :ios, '15.6'
+
+target 'Teletester' do
+  use_frameworks!
+  pod 'AppsFlyerFramework'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'  
+end
+
+target 'backgroundnotifications' do
+  use_frameworks!
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+end
