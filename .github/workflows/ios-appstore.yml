@@ -13,6 +13,8 @@ jobs:
       APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
       APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
       APP_STORE_APPLE_ID: ${{ secrets.APP_STORE_APPLE_ID }}
+      MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+      MATCH_GIT_URL: "https://github.com/NikDyr/BrainrotCheckerCerts.git"
       BUNDLE_ID: com.puplaplay.braincheck
       XCODE_PROJECT: Teletester.xcodeproj
       XCODE_SCHEME: Teletester
