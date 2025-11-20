@@ -71,8 +71,8 @@ jobs:
           # Параметры сборки
           IOS_SCHEME:          ${{ secrets.IOS_SCHEME }}       
           PROJECT_NAME:        ${{ secrets.PROJECT_NAME }}     
-          # XCODE_WORKSPACE:   ${{ secrets.XCODE_WORKSPACE }}  
-          # XCODE_PROJECT:     ${{ secrets.XCODE_PROJECT }}    
+          XCODE_WORKSPACE:   ${{ secrets.XCODE_WORKSPACE }}  
+          XCODE_PROJECT:     ${{ secrets.XCODE_PROJECT }}    
           BUILD_NUMBER:        ${{ github.run_number }}
           GIT_FULL_NAME:       ci-bot
           GIT_USER_EMAIL:      ci-bot@local
