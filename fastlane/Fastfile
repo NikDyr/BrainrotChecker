@@ -156,12 +156,13 @@ platform :ios do
         provisioningProfiles: provisioning_profiles
       }
     }
-
-    if workspace_path
-      build_app(common.merge(workspace: workspace_path))
-    else
-      build_app(common.merge(project: project_path))
-    end
+    
+    build_app(common.merge(workspace: workspace_path))
+    #if workspace_path
+    #  build_app(common.merge(workspace: workspace_path))
+    #else
+    #  build_app(common.merge(project: project_path))
+    #end
 
     app_store_connect_api_key(
       key_id:      ENV["APPSTORE_KEY_ID"],
