@@ -40,6 +40,7 @@ platform :ios do
 
     sync_certificates
 
+    sh("ls -la")
     cocoapods(
       clean_install: true
     )
