@@ -42,7 +42,8 @@ platform :ios do
 
     sh("ls -la")
     cocoapods(
-      clean_install: true
+      clean_install: true,
+      podfile: "../podfile"
     )
 
     scheme          = (ENV["IOS_SCHEME"] || ENV["PROJECT_NAME"]).to_s.strip
