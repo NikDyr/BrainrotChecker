@@ -28,12 +28,16 @@ jobs:
           ruby-version: '3.1'
       - name: Install Fastlane
         run: gem install fastlane
-      - name: Write App Store Connect API Key to file
+      - name: Write App Store Connect API Key JSON
         run: |
-          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ./AuthKey.p8
+            echo '{
+            "key_id": "${{ env.APP_STORE_CONNECT_KEY_ID }}",
+            "issuer_id": "${{ env.APP_STORE_CONNECT_ISSUER_ID }}",
+            "key": "${{ env.APP_STORE_CONNECT_PRIVATE_KEY }}"
+            }' > ./AuthKey.json
       - name: Set up provisioning profiles
         run: |
-          fastlane run sync_code_signing api_key_path:./AuthKey.p8
+          fastlane run sync_code_signing api_key_path:./AuthKey.json
       - name: Increment build number
         run: |
           cd ${{ github.workspace }}
