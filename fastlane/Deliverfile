@@ -1,5 +1,5 @@
 # чтобы не было ошибки "app_identifier пуст"
-app_identifier ENV["IOS_BUNDLE_ID"]
+app_identifier "com.puplaplay.braincheck"
 
 submit_for_review false
 automatic_release false
