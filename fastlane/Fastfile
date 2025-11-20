@@ -23,7 +23,7 @@ platform :ios do
     )
 
     main_app_bundle_id = ENV["IOS_BUNDLE_ID"]
-    extension_bundle_id = "#{ENV["IOS_BUNDLE_ID"]}.notifications"
+    extension_bundle_id = "#{ENV["IOS_BUNDLE_ID"]}.backgroundnotifications"
 
     match(
       type: "appstore",
