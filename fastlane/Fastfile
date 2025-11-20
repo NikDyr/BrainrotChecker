@@ -41,9 +41,7 @@ platform :ios do
     sync_certificates
 
     cocoapods(
-      clean: true,
-      install: true,
-      repo_update: true
+      clean_install: true
     )
 
     scheme          = (ENV["IOS_SCHEME"] || ENV["PROJECT_NAME"]).to_s.strip
