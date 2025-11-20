@@ -37,7 +37,14 @@ platform :ios do
   desc "Build .ipa for App Store (native)"
   lane :build do
     setup_ci
+
     sync_certificates
+
+    cocoapods(
+      clean: true,
+      install: true,
+      repo_update: true
+    )
 
     scheme          = (ENV["IOS_SCHEME"] || ENV["PROJECT_NAME"]).to_s.strip
     workspace_input = (ENV["XCODE_WORKSPACE"] || "").to_s.strip
