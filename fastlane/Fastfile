@@ -113,7 +113,10 @@ platform :ios do
     main_target  = ENV["IOS_MAIN_TARGET"].to_s.empty? ? scheme : ENV["IOS_MAIN_TARGET"]
     notif_target = ENV["IOS_NOTIF_TARGET"].to_s.empty? ? "notifications" : ENV["IOS_NOTIF_TARGET"]
 
-    project_or_workspace_path = project_path || workspace_path
+    project_or_workspace_path = nil
+    project_or_workspace_path = project_path if project_path && File.exist?(project_path)
+    project_or_workspace_path = workspace_path if project_or_workspace_path.nil? && workspace_path && File.exist?(workspace_path)
+    UI.user_error!("❌ Не найден workspace или project для code signing") if project_or_workspace_path.nil?
 
     update_code_signing_settings(
       use_automatic_signing: false,
