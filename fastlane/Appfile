@@ -1,4 +1,0 @@
-git_url("git@github.com:NikDyr/BrainrotCheckerCerts.git")
-storage_mode("git")
-type("development")
-app_identifier(["com.puplaplay.braincheck"])
