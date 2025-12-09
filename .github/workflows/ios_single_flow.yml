@@ -21,11 +21,18 @@ jobs:
           ruby-version: 3.3
           bundler-cache: true
 
+      - name: Generate MATCH_GIT_BASIC_AUTHORIZATION
+        run: |
+          echo -n "NikDyr:${GH_PAT}" | base64 > base64.txt
+          echo "MATCH_GIT_BASIC_AUTHORIZATION=$(cat base64.txt)" >> $GITHUB_ENV
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
       - name: Build & upload iOS binary
         run: bundle exec fastlane ios build_upload_testflight
         env:
           ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
           ASC_KEY: ${{ secrets.APPSTORE_P8 }}
-          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GH_PAT }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
