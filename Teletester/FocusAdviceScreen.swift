@@ -1,4 +1,8 @@
 import SwiftUI
+import FamilyControls
+import ManagedSettings
+import DeviceActivity
+import ScreenTime
 
 struct FocusAdvice {
     let title: String
@@ -18,7 +22,40 @@ let focusAdvices: [FocusAdvice] = [
     FocusAdvice(title: "Celebrate Progress", description: "Reward yourself for completing tasks. Positive reinforcement helps build good habits.", icon: "star.fill", color: .yellow)
 ]
 
+@available(iOS 16.0, *)
 struct FocusAdviceScreen: View {
+    @State private var isPresented = false
+    @State private var authorizationStatus: FamilyControls.AuthorizationStatus = .notDetermined
+    @State private var totalScreenTime: TimeInterval = 0
+
+    func requestAuthorization() {
+        Task {
+            do {
+                try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+                let status = AuthorizationCenter.shared.authorizationStatus
+                DispatchQueue.main.async {
+                    self.authorizationStatus = status
+                }
+            } catch {
+                print("Authorization failed: \(error)")
+            }
+        }
+    }
+    @State private var selection = FamilyActivitySelection()
+    @State private var showPicker = false
+
+    
+
+
+
+    func fetchScreenTime() {
+        let defaults = UserDefaults(suiteName: "group.com.puplaplay.braincheck")
+        let instagram = defaults?.integer(forKey: "instagramMinutes") ?? 0
+        let tiktok = defaults?.integer(forKey: "tiktokMinutes") ?? 0
+        let youtube = defaults?.integer(forKey: "youtubeMinutes") ?? 0
+        totalScreenTime = TimeInterval(instagram + tiktok + youtube) * 60
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
@@ -26,11 +63,31 @@ struct FocusAdviceScreen: View {
                     .font(.largeTitle)
                     .bold()
                     .padding(.top)
-                ForEach(Array(focusAdvices.enumerated()), id: \ .offset) { idx, advice in
+                ForEach(Array(focusAdvices.enumerated()), id: \.offset) { idx, advice in
                     FocusAdviceCard(advice: advice, index: idx + 1)
+                }
+                Button("Select Apps to Track") {
+                    showPicker = true
+                }
+                .familyActivityPicker(isPresented: $showPicker, selection: $selection)
+                if !selection.applicationTokens.isEmpty {
+                    Text("Selected apps: \(selection.applicationTokens.count)")
                 }
             }
             .padding()
+            if authorizationStatus == .notDetermined {
+                Button("Enable ScreenTime Tracking") {
+                    requestAuthorization()
+                }
+            } else if authorizationStatus == .approved {
+                Text("ScreenTime access granted.")
+                Text("Total screen time today: \(Int(totalScreenTime/60)) min")
+                Button("Refresh Usage") {
+                    fetchScreenTime()
+                }
+            } else {
+                Text("ScreenTime access denied or restricted.")
+            }
         }
     }
 }

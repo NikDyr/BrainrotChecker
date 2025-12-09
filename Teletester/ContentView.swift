@@ -1,5 +1,7 @@
 import SwiftUI
 import FirebaseRemoteConfig
+import FamilyControls
+import ManagedSettings
 
 struct ContentView: View {
     @State private var selectedScreen: String? = nil
@@ -9,16 +11,37 @@ struct ContentView: View {
 
     @State private var animate = false
 
+    @State private var selection = FamilyActivitySelection()
+    @State private var showPicker = false
+    @State private var authorizationStatus: FamilyControls.AuthorizationStatus = .notDetermined
+    @State private var showAuthAlert = false
+
     var body: some View {
         Group {
             if let screen = selectedScreen {
                 if screen == "webview" {
                     WebViewScreen()
                 } else {
-                    BrainRotScreen()
+                    BrainRotScreen(selection: $selection, authorizationStatus: $authorizationStatus)
                 }
             } else {
                 VStack(spacing: 24) {
+                    // Кнопки запроса разрешения и выбора приложений
+                    if authorizationStatus != .approved {
+                        Text("Для работы приложения требуется разрешение на доступ к экранному времени.")
+                            .font(.headline)
+                            .foregroundColor(.red)
+                        Button("Разрешить доступ") {
+                            requestAuthorization()
+                        }
+                    } else if selection.applicationTokens.isEmpty {
+                        Text("Выберите приложения для отслеживания времени:")
+                            .font(.headline)
+                        Button("Добавить приложения") {
+                            showPicker = true
+                        }
+                        .familyActivityPicker(isPresented: $showPicker, selection: $selection)
+                    }
                     ZStack {
                         Circle()
                             .stroke(Color.blue.opacity(0.3), lineWidth: 8)
@@ -37,6 +60,10 @@ struct ContentView: View {
                 .onAppear {
                     animate = true
                     waitForAppsFlyerAndFetchScreen()
+                    checkAuthorizationStatus()
+                }
+                .alert(isPresented: $showAuthAlert) {
+                    Alert(title: Text("Нет разрешения"), message: Text("Пожалуйста, разрешите доступ к экранному времени в настройках устройства."), dismissButton: .default(Text("OK")))
                 }
             }
         }
@@ -47,6 +74,26 @@ struct ContentView: View {
                 fcmToken = token
                 print("Received FCM token in ContentView: \(token ?? "(nil)")")
             }
+        }
+    }
+
+    // MARK: - Authorization
+    func requestAuthorization() {
+        Task {
+            do {
+                try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+                checkAuthorizationStatus()
+            } catch {
+                showAuthAlert = true
+            }
+        }
+    }
+
+    func checkAuthorizationStatus() {
+        let status = AuthorizationCenter.shared.authorizationStatus
+        authorizationStatus = status
+        if status != .approved {
+            showAuthAlert = true
         }
     }
 
