@@ -8,30 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		823CAF5BAFBB295F21391E12 /* Pods_Teletester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2715BE9E3A45225C4D0BA0 /* Pods_Teletester.framework */; };
-		BE38AA9DB0D2807093265BB6 /* Pods_backgroundnotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627BD3C8686360DB49214F38 /* Pods_backgroundnotifications.framework */; };
 		FA461F592ED44D2500DABBFA /* FamilyControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA461F572ED44D1B00DABBFA /* FamilyControls.framework */; };
-		FA461F5F2ED44E6300DABBFA /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5BB282ECDDEF6002CE575 /* DeviceActivity.framework */; };
-		FA461F672ED44E6300DABBFA /* ScreenActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FA461F5E2ED44E6300DABBFA /* ScreenActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FAF5C5012ECCABBB00E76882 /* backgroundnotifications.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAF5C4FA2ECCABBB00E76882 /* backgroundnotifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FAF5C5362ECCBDE100E76882 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF5C5352ECCBDE100E76882 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		FA461F652ED44E6300DABBFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FAF5C4CC2ECC9FF300E76882 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FA461F5D2ED44E6300DABBFA;
-			remoteInfo = ScreenActivityMonitor;
-		};
-		FAF5C4FF2ECCABBB00E76882 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FAF5C4CC2ECC9FF300E76882 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FAF5C4F92ECCABBB00E76882;
-			remoteInfo = backgroundnotifications;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FAF5C5062ECCABBB00E76882 /* Embed Foundation Extensions */ = {
@@ -40,8 +18,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FA461F672ED44E6300DABBFA /* ScreenActivityMonitor.appex in Embed Foundation Extensions */,
-				FAF5C5012ECCABBB00E76882 /* backgroundnotifications.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,10 +32,8 @@
 		9CABBA4F178EE38409458255 /* Pods-backgroundnotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-backgroundnotifications.debug.xcconfig"; path = "Target Support Files/Pods-backgroundnotifications/Pods-backgroundnotifications.debug.xcconfig"; sourceTree = "<group>"; };
 		B13536E23BEE12349C86443C /* Pods-Teletester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teletester.debug.xcconfig"; path = "Target Support Files/Pods-Teletester/Pods-Teletester.debug.xcconfig"; sourceTree = "<group>"; };
 		FA461F572ED44D1B00DABBFA /* FamilyControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FamilyControls.framework; path = System/Library/Frameworks/FamilyControls.framework; sourceTree = SDKROOT; };
-		FA461F5E2ED44E6300DABBFA /* ScreenActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC5BB282ECDDEF6002CE575 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		FAF5C4D42ECC9FF300E76882 /* Teletester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teletester.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAF5C4FA2ECCABBB00E76882 /* backgroundnotifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = backgroundnotifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF5C5352ECCBDE100E76882 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		FAF5C5612ECCBF0000E76882 /* FirebaseABTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseABTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF5C5622ECCBF0000E76882 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,29 +45,9 @@
 		FAF5C5772ECCBF1F00E76882 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		FA461F682ED44E6300DABBFA /* Exceptions for "ScreenActivityMonitor" folder in "ScreenActivityMonitor" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = FA461F5D2ED44E6300DABBFA /* ScreenActivityMonitor */;
-		};
-		FAF5C5022ECCABBB00E76882 /* Exceptions for "backgroundnotifications" folder in "backgroundnotifications" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = FAF5C4F92ECCABBB00E76882 /* backgroundnotifications */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FA461F602ED44E6300DABBFA /* ScreenActivityMonitor */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				FA461F682ED44E6300DABBFA /* Exceptions for "ScreenActivityMonitor" folder in "ScreenActivityMonitor" target */,
-			);
 			path = ScreenActivityMonitor;
 			sourceTree = "<group>";
 		};
@@ -104,38 +58,18 @@
 		};
 		FAF5C4FB2ECCABBB00E76882 /* backgroundnotifications */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				FAF5C5022ECCABBB00E76882 /* Exceptions for "backgroundnotifications" folder in "backgroundnotifications" target */,
-			);
 			path = backgroundnotifications;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FA461F5B2ED44E6300DABBFA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FA461F5F2ED44E6300DABBFA /* DeviceActivity.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FAF5C4D12ECC9FF300E76882 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FA461F592ED44D2500DABBFA /* FamilyControls.framework in Frameworks */,
 				823CAF5BAFBB295F21391E12 /* Pods_Teletester.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FAF5C4F72ECCABBB00E76882 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FAF5C5362ECCBDE100E76882 /* UserNotifications.framework in Frameworks */,
-				BE38AA9DB0D2807093265BB6 /* Pods_backgroundnotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				FAF5C4D42ECC9FF300E76882 /* Teletester.app */,
-				FAF5C4FA2ECCABBB00E76882 /* backgroundnotifications.appex */,
-				FA461F5E2ED44E6300DABBFA /* ScreenActivityMonitor.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,28 +130,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FA461F5D2ED44E6300DABBFA /* ScreenActivityMonitor */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FA461F692ED44E6300DABBFA /* Build configuration list for PBXNativeTarget "ScreenActivityMonitor" */;
-			buildPhases = (
-				FA461F5A2ED44E6300DABBFA /* Sources */,
-				FA461F5B2ED44E6300DABBFA /* Frameworks */,
-				FA461F5C2ED44E6300DABBFA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FA461F602ED44E6300DABBFA /* ScreenActivityMonitor */,
-			);
-			name = ScreenActivityMonitor;
-			packageProductDependencies = (
-			);
-			productName = ScreenActivityMonitor;
-			productReference = FA461F5E2ED44E6300DABBFA /* ScreenActivityMonitor.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		FAF5C4D32ECC9FF300E76882 /* Teletester */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAF5C4E22ECC9FF400E76882 /* Build configuration list for PBXNativeTarget "Teletester" */;
@@ -235,8 +145,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				FAF5C5002ECCABBB00E76882 /* PBXTargetDependency */,
-				FA461F662ED44E6300DABBFA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				FAF5C4D62ECC9FF300E76882 /* Teletester */,
@@ -247,29 +155,6 @@
 			productName = Teletester;
 			productReference = FAF5C4D42ECC9FF300E76882 /* Teletester.app */;
 			productType = "com.apple.product-type.application";
-		};
-		FAF5C4F92ECCABBB00E76882 /* backgroundnotifications */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FAF5C5032ECCABBB00E76882 /* Build configuration list for PBXNativeTarget "backgroundnotifications" */;
-			buildPhases = (
-				E60E324625FFE54F9B124EA8 /* [CP] Check Pods Manifest.lock */,
-				FAF5C4F62ECCABBB00E76882 /* Sources */,
-				FAF5C4F72ECCABBB00E76882 /* Frameworks */,
-				FAF5C4F82ECCABBB00E76882 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FAF5C4FB2ECCABBB00E76882 /* backgroundnotifications */,
-			);
-			name = backgroundnotifications;
-			packageProductDependencies = (
-			);
-			productName = backgroundnotifications;
-			productReference = FAF5C4FA2ECCABBB00E76882 /* backgroundnotifications.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -282,13 +167,7 @@
 				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
-					FA461F5D2ED44E6300DABBFA = {
-						CreatedOnToolsVersion = 16.2;
-					};
 					FAF5C4D32ECC9FF300E76882 = {
-						CreatedOnToolsVersion = 16.2;
-					};
-					FAF5C4F92ECCABBB00E76882 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
@@ -310,28 +189,12 @@
 			projectRoot = "";
 			targets = (
 				FAF5C4D32ECC9FF300E76882 /* Teletester */,
-				FAF5C4F92ECCABBB00E76882 /* backgroundnotifications */,
-				FA461F5D2ED44E6300DABBFA /* ScreenActivityMonitor */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FA461F5C2ED44E6300DABBFA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FAF5C4D22ECC9FF300E76882 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FAF5C4F82ECCABBB00E76882 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,28 +238,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Teletester/Pods-Teletester-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E60E324625FFE54F9B124EA8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-backgroundnotifications-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FF6F408765260B24BB9F3671 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,21 +263,7 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FA461F5A2ED44E6300DABBFA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FAF5C4D02ECC9FF300E76882 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FAF5C4F62ECCABBB00E76882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -445,76 +272,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		FA461F662ED44E6300DABBFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FA461F5D2ED44E6300DABBFA /* ScreenActivityMonitor */;
-			targetProxy = FA461F652ED44E6300DABBFA /* PBXContainerItemProxy */;
-		};
-		FAF5C5002ECCABBB00E76882 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FAF5C4F92ECCABBB00E76882 /* backgroundnotifications */;
-			targetProxy = FAF5C4FF2ECCABBB00E76882 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		FA461F6A2ED44E6300DABBFA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ScreenActivityMonitor/ScreenActivityMonitor.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScreenActivityMonitor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ScreenActivityMonitor;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.puplaplay.braincheck.ScreenActivityMonitor;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		FA461F6B2ED44E6300DABBFA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ScreenActivityMonitor/ScreenActivityMonitor.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScreenActivityMonitor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ScreenActivityMonitor;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.puplaplay.braincheck.ScreenActivityMonitor;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		FAF5C4E02ECC9FF400E76882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -720,82 +478,9 @@
 			};
 			name = Release;
 		};
-		FAF5C5042ECCABBB00E76882 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CABBA4F178EE38409458255 /* Pods-backgroundnotifications.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = backgroundnotifications/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = backgroundnotifications;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.puplaplay.braincheck.backgroundnotifications;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		FAF5C5052ECCABBB00E76882 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EE8A4DDDB36590915EB5652 /* Pods-backgroundnotifications.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = backgroundnotifications/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = backgroundnotifications;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.puplaplay.braincheck.backgroundnotifications;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA461F692ED44E6300DABBFA /* Build configuration list for PBXNativeTarget "ScreenActivityMonitor" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FA461F6A2ED44E6300DABBFA /* Debug */,
-				FA461F6B2ED44E6300DABBFA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FAF5C4CF2ECC9FF300E76882 /* Build configuration list for PBXProject "Teletester" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -810,15 +495,6 @@
 			buildConfigurations = (
 				FAF5C4E32ECC9FF400E76882 /* Debug */,
 				FAF5C4E42ECC9FF400E76882 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FAF5C5032ECCABBB00E76882 /* Build configuration list for PBXNativeTarget "backgroundnotifications" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FAF5C5042ECCABBB00E76882 /* Debug */,
-				FAF5C5052ECCABBB00E76882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
