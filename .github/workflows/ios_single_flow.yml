@@ -28,11 +28,6 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
 
-      - name: Generate MATCH_PASSWORD
-        run: |
-          RANDOM_PASS=$(date +%s | sha256sum | base64 | head -c 32)
-          echo "MATCH_PASSWORD=$RANDOM_PASS" >> $GITHUB_ENV
-
       - name: Build & upload iOS binary
         run: bundle exec fastlane ios build_upload_testflight
         env:
@@ -40,4 +35,4 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
           ASC_KEY: ${{ secrets.APPSTORE_P8 }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
-          MATCH_PASSWORD: ${{ env.MATCH_PASSWORD }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
