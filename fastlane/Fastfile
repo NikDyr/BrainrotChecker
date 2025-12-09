@@ -24,7 +24,7 @@ platform :ios do
             readonly: true,
             verbose: true,
             force: true,
-            git_private_key: ENV["MATCH_GIT_PRIVATE_KEY"])
+            git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"])
       build_app(scheme: "Teletester", verbose: true)
       upload_to_testflight
    end
