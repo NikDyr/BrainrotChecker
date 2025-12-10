@@ -28,9 +28,19 @@ platform :ios do
       sync_code_signing(
         type: "appstore", # or "development", "adhoc", "enterprise"
         readonly: true)
-      build_app(scheme: "Teletester",
-                export_method: "app-store",
-                verbose: true)
+      build_app(
+        scheme: "Teletester",
+        export_method: "app-store",
+        export_options: {
+          provisioningProfiles: {
+            "com.puplaplay.braincheck" => "match AppStore com.puplaplay.braincheck"
+          },
+          signingStyle: "manual",
+          signingCertificate: "Apple Distribution: Christina Marie Bonney (C6US6NYK48)",
+          teamID: "C6US6NYK48"
+        },
+        verbose: true
+      )
       upload_to_testflight
    end
 end
