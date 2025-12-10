@@ -30,7 +30,7 @@ platform :ios do
         readonly: true)
       build_app(
         scheme: "Teletester",
-        cargs: "-allowProvisioningUpdates",
+        xcargs: "-allowProvisioningUpdates",
         verbose: true
       )
       upload_to_testflight
