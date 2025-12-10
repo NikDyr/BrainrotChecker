@@ -36,3 +36,4 @@ jobs:
           ASC_KEY: ${{ secrets.APPSTORE_P8 }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
