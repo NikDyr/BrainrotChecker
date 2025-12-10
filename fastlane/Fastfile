@@ -31,6 +31,7 @@ platform :ios do
       build_app(
         scheme: "Teletester",
         xcargs: "-allowProvisioningUpdates",
+        export_team_id: "C6US6NYK48",
         verbose: true
       )
       upload_to_testflight
