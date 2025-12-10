@@ -39,19 +39,14 @@ platform :ios do
       )
       
       project_path = Dir.glob("*.xcodeproj").first
-      # Автоматически получаем bundle identifier из Info.plist
-      info_plist_path = "Teletester/GoogleService-Info.plist"
-      app_bundle_id = get_info_plist_value(path: "./Info.plist", key: "CFBundleIdentifier")
-      # Получаем code_sign_identity автоматически
-      code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk '{print $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$40,$41,$42,$43,$44,$45,$46,$47,$48,$49,$50}'").strip
       update_code_signing_settings(
         use_automatic_signing: false,
         path: project_path,
         team_id: ENV["TEAM_ID"],
-        bundle_identifier: app_bundle_id,
-        code_sign_identity: code_sign_identity,
+        bundle_identifier: ENV["BUNDLE_IDENTIFIER"],
+        code_sign_identity: "Apple Distribution: Christina Marie Bonney (#{ENV["TEAM_ID"]})",
         sdk: "iphoneos*",
-        profile_name: "match AppStore #{app_bundle_id}"
+        profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
       )
       build_app(
         scheme: "Teletester",
