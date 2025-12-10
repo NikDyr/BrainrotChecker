@@ -25,7 +25,9 @@ platform :ios do
             verbose: true,
             force: true,
             git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"])
-      build_app(scheme: "Teletester", verbose: true)
+      build_app(scheme: "Teletester",
+                verbose: true,
+                team_id: "C6US6NYK48")
       upload_to_testflight
    end
 end
