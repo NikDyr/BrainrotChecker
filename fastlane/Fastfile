@@ -24,10 +24,10 @@ platform :ios do
             readonly: false,
             verbose: true,
             force: true,
-            git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"])
+            git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+            team_id: "C6US6NYK48")
       build_app(scheme: "Teletester",
-                verbose: true,
-                team_id: "C6US6NYK48")
+                verbose: true)
       upload_to_testflight
    end
 end
