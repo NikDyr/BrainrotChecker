@@ -44,7 +44,7 @@ platform :ios do
         readonly: true
       )
       
-      project_path = Dir.glob("*.xcodeproj").first
+      project_path = Dir.glob("../*.xcodeproj").first
       unless project_path
         UI.user_error!("No .xcodeproj file found in the current directory!")
       end
