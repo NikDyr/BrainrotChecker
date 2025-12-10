@@ -43,12 +43,14 @@ platform :ios do
       )
       
       project_path = Dir.glob("*.xcodeproj").first
+      # Автоматически извлекаем code_sign_identity из сертификатов
+      code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk '{for(i=2;i<=NF;i++) printf $i \\" \\\"}'").strip
       update_code_signing_settings(
         use_automatic_signing: false,
         path: project_path,
         team_id: ENV["TEAM_ID"],
         bundle_identifier: ENV["BUNDLE_IDENTIFIER"],
-        code_sign_identity: "Apple Distribution: Christina Marie Bonney (#{ENV["TEAM_ID"]})",
+        code_sign_identity: code_sign_identity,
         sdk: "iphoneos*",
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
       )
