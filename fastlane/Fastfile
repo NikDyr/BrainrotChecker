@@ -38,8 +38,14 @@ platform :ios do
         readonly: true
       )
       update_code_signing_settings(
-        use_automatic_signing: true,
-        path: "Teletester.xcodeproj"
+        use_automatic_signing: false,
+        path: "Teletester.xcodeproj",
+        team_id: "C6US6NYK48",
+        bundle_identifier: "com.puplaplay.braincheck",
+        code_sign_identity: "Apple Distribution: Christina Marie Bonney (C6US6NYK48)",
+        sdk: "iphoneos*",
+        profile_name: "match AppStore com.puplaplay.braincheck",
+        # entitlements_file_path: "Demo App/generated/New.entitlements" # Uncomment and set correct path if needed
       )
       build_app(
         scheme: "Teletester",
