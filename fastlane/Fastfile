@@ -44,9 +44,8 @@ platform :ios do
         readonly: true
       )
       
-      project_path = Dir.glob("*.xcodeproj").first
-      # Автоматически извлекаем code_sign_identity из сертификатов
-        code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk -F '\"' '{print $2}'").strip
+      project_path = Dir.glob("*.xcodeproj").first      
+      code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk -F '\"' '{print $2}'").strip
       update_code_signing_settings(
         use_automatic_signing: false,
         path: project_path,
@@ -56,14 +55,21 @@ platform :ios do
         sdk: "iphoneos*",
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
       )
+      # Корректно извлекаем основную схему из проекта
+      schemes_output = sh("xcodebuild -list -project #{project_path}")
+      schemes_section = schemes_output.split('Schemes:').last
+      schemes = schemes_section ? schemes_section.split("\n").map(&:strip).reject(&:empty?) : []
+      target_name = File.basename(project_path, '.xcodeproj')
+      unless schemes.include?(target_name)
+        UI.user_error!("Scheme with main target name '#{target_name}' not found among available schemes: #{schemes.join(', ')}")
+      end
       build_app(
-        scheme: "Teletester",
+        scheme: target_name,
         xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
         verbose: true
       )
-      upload_to_testflight(skip_waiting_for_build_processing: true)
-      # После успешной загрузки обновляем переменную (пример для GitHub Actions)
+      upload_to_testflight(skip_waiting_for_build_processing: true)      
       sh("echo 'LAST_UPLOADED_BUILD_NUMBER=#{new_build_number}' >> $GITHUB_ENV")
    end
 end
