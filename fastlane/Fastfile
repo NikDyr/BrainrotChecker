@@ -44,7 +44,10 @@ platform :ios do
         readonly: true
       )
       
-      project_path = Dir.glob("*.xcodeproj").first      
+      project_path = Dir.glob("*.xcodeproj").first
+      unless project_path
+        UI.user_error!("No .xcodeproj file found in the current directory!")
+      end
       code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk -F '\"' '{print $2}'").strip
       update_code_signing_settings(
         use_automatic_signing: false,
