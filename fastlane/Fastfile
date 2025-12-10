@@ -28,7 +28,8 @@ platform :ios do
       sync_code_signing(
         type: "appstore", # or "development", "adhoc", "enterprise"
         readonly: true)
-      build_app(export_method: "app-store",
+      build_app(scheme: "Teletester",
+                export_method: "app-store",
                 verbose: true)
       upload_to_testflight
    end
