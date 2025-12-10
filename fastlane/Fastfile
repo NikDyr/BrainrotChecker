@@ -24,16 +24,23 @@ platform :ios do
   desc "Build and upload to TestFlight"
     lane :build_upload_testflight do
       load_asc_api_key
-      setup_ci          
-      match(type: 'appstore',
-            readonly: false,
-            verbose: true,
-            force: true,
-            git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"])
+      setup_ci
+      match(
+        type: 'appstore',
+        readonly: false,
+        verbose: true,
+        force: true,
+        git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"]
+      )
       list_profiles
       sync_code_signing(
-        type: "appstore", # or "development", "adhoc", "enterprise"
-        readonly: true)
+        type: "appstore",
+        readonly: true
+      )
+      update_code_signing_settings(
+        use_automatic_signing: true,
+        path: "Teletester.xcodeproj"
+      )
       build_app(
         scheme: "Teletester",
         xcargs: "-allowProvisioningUpdates",
