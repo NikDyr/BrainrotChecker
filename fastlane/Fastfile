@@ -44,9 +44,10 @@ platform :ios do
         readonly: true
       )
       
-      project_path = Dir.glob("../*.xcodeproj").first
-      unless project_path
-        UI.user_error!("No .xcodeproj file found in the current directory!")
+      project_path = Dir.glob("*.xcodeproj").first
+      target_name = File.basename(project_path, '.xcodeproj')
+      unless target_name && !target_name.empty?
+        UI.user_error!("Target name could not be determined from project path: #{project_path}")
       end
       code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk -F '\"' '{print $2}'").strip
       update_code_signing_settings(
@@ -57,15 +58,7 @@ platform :ios do
         code_sign_identity: code_sign_identity,
         sdk: "iphoneos*",
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
-      )
-      # Корректно извлекаем основную схему из проекта
-      schemes_output = sh("xcodebuild -list -project #{project_path}")
-      schemes_section = schemes_output.split('Schemes:').last
-      schemes = schemes_section ? schemes_section.split("\n").map(&:strip).reject(&:empty?) : []
-      target_name = File.basename(project_path, '.xcodeproj')
-      unless schemes.include?(target_name)
-        UI.user_error!("Scheme with main target name '#{target_name}' not found among available schemes: #{schemes.join(', ')}")
-      end
+      )      
       build_app(
         scheme: target_name,
         xcargs: "-allowProvisioningUpdates",
