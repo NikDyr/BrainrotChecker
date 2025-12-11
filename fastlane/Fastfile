@@ -67,7 +67,9 @@ platform :ios do
         export_team_id: ENV["TEAM_ID"],
         verbose: true
       )
-      upload_to_testflight(skip_waiting_for_build_processing: true)      
+      upload_to_testflight(
+        apple_id: "6755475846",
+        skip_waiting_for_build_processing: true)      
       sh("echo 'LAST_UPLOADED_BUILD_NUMBER=#{new_build_number}' >> $GITHUB_ENV")
    end
 end
