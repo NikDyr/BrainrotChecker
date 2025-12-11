@@ -45,6 +45,7 @@ platform :ios do
       )
       
       project_path = Dir.glob("*.xcodeproj").first
+      UI.important "Dir.glob: #{Dir.glob("*.xcodeproj")}"
       UI.important "Project path: #{project_path}"
       target_name = File.basename(project_path, '.xcodeproj')
       unless target_name && !target_name.empty?
