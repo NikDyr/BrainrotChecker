@@ -48,19 +48,20 @@ platform :ios do
       update_code_signing_settings(
         use_automatic_signing: false,
         team_id: ENV["TEAM_ID"],
-        bundle_identifier: ENV["BUNDLE_IDENTIFIER"],
-        code_sign_identity: code_sign_identity,
-        sdk: "iphoneos*",
-        profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
-      )
-      update_code_signing_settings(
-        use_automatic_signing: false,
-        team_id: ENV["TEAM_ID"],
         bundle_identifier: ENV["BUNDLE_IDENTIFIER"] + ".notifications",
         code_sign_identity: code_sign_identity,
         sdk: "iphoneos*",
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}.notifications",        
       ) 
+      update_code_signing_settings(
+        use_automatic_signing: false,
+        team_id: ENV["TEAM_ID"],
+        bundle_identifier: ENV["BUNDLE_IDENTIFIER"],
+        code_sign_identity: code_sign_identity,
+        sdk: "iphoneos*",
+        profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
+      )
+      
       build_app(
         scheme: ENV["XC_TARGET_NAME"],
         xcargs: "-allowProvisioningUpdates",
