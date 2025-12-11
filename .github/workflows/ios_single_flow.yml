@@ -40,3 +40,4 @@ jobs:
           BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER }}
           MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
           LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER }}
+          XC_TARGET_NAME: ${{ vars.XC_TARGET_NAME }}

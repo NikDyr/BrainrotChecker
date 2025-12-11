@@ -44,17 +44,9 @@ platform :ios do
         readonly: true
       )
       
-      project_path = Dir.glob("*.xcodeproj").first
-      UI.important "Dir.glob: #{Dir.glob("*.xcodeproj")}"
-      UI.important "Project path: #{project_path}"
-      target_name = File.basename(project_path, '.xcodeproj')
-      unless target_name && !target_name.empty?
-        UI.user_error!("Target name could not be determined from project path: #{project_path}")
-      end
       code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk -F '\"' '{print $2}'").strip
       update_code_signing_settings(
         use_automatic_signing: false,
-        path: project_path,
         team_id: ENV["TEAM_ID"],
         bundle_identifier: ENV["BUNDLE_IDENTIFIER"],
         code_sign_identity: code_sign_identity,
@@ -62,7 +54,7 @@ platform :ios do
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
       )      
       build_app(
-        scheme: target_name,
+        scheme: ENV["XC_TARGET_NAME"],
         xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
         verbose: true
