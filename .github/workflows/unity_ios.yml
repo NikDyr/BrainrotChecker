@@ -47,6 +47,7 @@ jobs:
 
 
   build:
+    needs: buildForAllSupportedPlatforms
     runs-on: macos-latest
     steps:
       - name: Checkout repository
