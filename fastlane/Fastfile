@@ -57,7 +57,7 @@ platform :ios do
       update_code_signing_settings(
         use_automatic_signing: false,
         team_id: ENV["TEAM_ID"],
-        targets: notifications,
+        targets: "notifications",
         #bundle_identifier: ENV["BUNDLE_IDENTIFIER"] + ".notifications",
         code_sign_identity: code_sign_identity,
         sdk: "iphoneos*",
