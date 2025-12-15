@@ -29,7 +29,7 @@ platform :ios do
         new_minor = last_uploaded_build + 1
         new_build_number = "#{major_version}.#{new_minor}"
         fastlane_require 'xcodeproj'
-        project = Xcodeproj::Project.open("Unity-iPhone.xcodeproj")
+        project = Xcodeproj::Project.open("build/iOS/Unity-iPhone.xcodeproj")
         target = project.targets.find { |t| t.name == ENV["XC_TARGET_NAME"] }
         target.build_configurations.each do |item|
             item.build_settings['VERSIONING_SYSTEM'] = "Apple Generic"
