@@ -32,7 +32,7 @@ platform :ios do
         project = Xcodeproj::Project.open("YOUR_PROJECT.xcodeproj")
         target = project.targets.find { |t| t.name == ENV["XC_TARGET_NAME"] }
         target.build_configurations.each do |item|
-            item.build_settings['VERSIONING_SYSTEM'] = "apple-generic"
+            item.build_settings['VERSIONING_SYSTEM'] = "Apple Generic"
         end
         project.save
         increment_build_number(build_number: new_build_number)
