@@ -10,12 +10,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download artifact from another workflow
+      - name: Generate MATCH_GIT_BASIC_AUTHORIZATION
+        run: |
+          echo -n "NikDyr:${GH_PAT}" | base64 > base64.txt
+          echo "MATCH_GIT_BASIC_AUTHORIZATION=$(cat base64.txt)" >> $GITHUB_ENV
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Download artifact
         uses: dawidd6/action-download-artifact@v3
         with:
-          workflow: unity_ios.yml # например, build.yml
-          name: Build-iOS        # имя артефакта, который был сохранён
-          path: ./artifact           # куда скачать
+          github_token: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
+          workflow: unity_ios.yml                # имя workflow, где создаётся артефакт
+          workflow_conclusion: success
+          branch: unity-ios                     # ветка, где запускался workflow
+          name: Build-iOS                    # имя артефакта
+          path: ./artifact                   # куда распаковать
 
       - name: List artifact contents
         run: ls -la ./artifact
