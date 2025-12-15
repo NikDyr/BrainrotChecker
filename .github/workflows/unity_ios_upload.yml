@@ -3,8 +3,14 @@ name: unity-ios-upload
 description: >
   This workflow uploads the iOS build artifact to TestFlight using Fastlane, downloading the build artifact from the main build workflow.
 
+
 on:
   workflow_dispatch:
+    inputs:
+      artifact_name:
+        description: 'Name of the iOS build artifact to download (e.g., Build-iOS)'
+        required: true
+        default: 'Build-iOS'
 
 jobs:
   xcodeBuildAndUpload:
@@ -18,7 +24,7 @@ jobs:
       - name: Download iOS Artifact
         uses: actions/download-artifact@v4
         with:
-          name: Build-iOS
+          name: ${{ github.event.inputs.artifact_name }}
           path: build/iOS
 
       - name: Set up Xcode
