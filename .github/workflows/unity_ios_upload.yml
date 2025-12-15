@@ -20,11 +20,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download iOS Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ github.event.inputs.artifact_name }}
-          path: build/iOS
+      - name: Download iOS Artifact by URL
+        run: |
+          mkdir -p build/iOS
+          curl -L "${{ github.event.inputs.artifact_url }}" -o build/iOS/artifact.zip
+
+      - name: Unzip iOS Artifact
+        run: unzip -o build/iOS/artifact.zip -d build/iOS
 
       - name: List downloaded files
         run: ls -R build
