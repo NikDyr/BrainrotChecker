@@ -7,10 +7,9 @@ description: >
 on:
   workflow_dispatch:
     inputs:
-      artifact_name:
-        description: 'Name of the iOS build artifact to download (e.g., Build-iOS)'
+      artifact_url:
+        description: 'Direct URL to the iOS build artifact (zip, etc.)'
         required: true
-        default: 'Build-iOS'
 
 jobs:
   xcodeBuildAndUpload:
