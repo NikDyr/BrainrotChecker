@@ -26,6 +26,9 @@ jobs:
           name: ${{ github.event.inputs.artifact_name }}
           path: build/iOS
 
+      - name: List downloaded files
+        run: ls -R build/${{ matrix.targetPlatform }}
+
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
