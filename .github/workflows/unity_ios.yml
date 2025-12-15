@@ -52,6 +52,8 @@ jobs:
   xcodeBuildAndUpload:
     needs: buildForAllSupportedPlatforms
     runs-on: macos-latest
+    env:
+      IOS_BUILD_PATH: ${{ format('{0}/build/iOS', github.workspace) }}
     strategy:
       fail-fast: false
       matrix:
@@ -89,7 +91,7 @@ jobs:
 
       - name: Enable Apple Generic Versioning
         run: |
-          xcodebuild -project Build/iOS/Unity-iPhone.xcodeproj -target "Unity-iPhone" -configuration Release \
+          xcodebuild -project "${{ env.IOS_BUILD_PATH }}/iOS/Unity-iPhone.xcodeproj" -target "Unity-iPhone" -configuration Release \
             "VERSIONING_SYSTEM=apple-generic" \
             "CURRENT_PROJECT_VERSION=1"
           
