@@ -88,12 +88,6 @@ jobs:
           echo "MATCH_GIT_BASIC_AUTHORIZATION=$(cat base64.txt)" >> $GITHUB_ENV
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
-
-      - name: Enable Apple Generic Versioning
-        run: |
-          xcodebuild -project "${{ env.IOS_BUILD_PATH }}/iOS/Unity-iPhone.xcodeproj" -target "Unity-iPhone" -configuration Release \
-            "VERSIONING_SYSTEM=apple-generic" \
-            "CURRENT_PROJECT_VERSION=1"
           
       - name: Build & upload iOS binary
         run: bundle exec fastlane ios build_upload_testflight
