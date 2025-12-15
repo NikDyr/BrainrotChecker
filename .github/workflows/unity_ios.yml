@@ -89,7 +89,7 @@ jobs:
 
       - name: Enable Apple Generic Versioning
         run: |
-          xcodebuild -project Unity-iPhone.xcodeproj -target "Unity-iPhone" -configuration Release \
+          xcodebuild -project Build/iOS/Unity-iPhone.xcodeproj -target "Unity-iPhone" -configuration Release \
             "VERSIONING_SYSTEM=apple-generic" \
             "CURRENT_PROJECT_VERSION=1"
           
