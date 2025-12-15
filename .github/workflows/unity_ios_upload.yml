@@ -24,12 +24,12 @@ jobs:
         run: |
           mkdir -p build/iOS
           curl -L "${{ github.event.inputs.artifact_url }}" -o build/iOS/artifact.zip
-
-      - name: Unzip iOS Artifact
-        run: unzip -o build/iOS/artifact.zip -d build/iOS
-
+      
       - name: List downloaded files
         run: ls -R build
+          
+      - name: Unzip iOS Artifact
+        run: unzip -o build/iOS/artifact.zip -d build/iOS
 
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
