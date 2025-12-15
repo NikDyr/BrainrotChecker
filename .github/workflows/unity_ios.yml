@@ -3,7 +3,7 @@ name: unity-build-and-ios-upload
 on:
   workflow_dispatch:
 
-jobs:  
+jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }} on ${{ matrix.unity-version }}
     runs-on: ${{ matrix.os }}
@@ -49,9 +49,16 @@ jobs:
           path: build/${{ matrix.targetPlatform }}
 
 
-  build:
+  xcodeBuildAndUpload:
     needs: buildForAllSupportedPlatforms
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        unity-version:
+          - ${{ vars.UNITY_VERSION || '2022.3.62f3' }}
+        targetPlatform:
+          - iOS
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
