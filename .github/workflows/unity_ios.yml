@@ -74,6 +74,25 @@ jobs:
       - name: List downloaded files
         run: ls -R build/${{ matrix.targetPlatform }}
 
+      - name: list build root
+        run: |
+          echo '--- build directory ---'
+          ls -l build || true
+
+      - name: list build/iOS
+        run: |
+          echo '--- build/iOS directory ---'
+          ls -l build/iOS || true
+
+      - name: list build/iOS/iOS
+        run: |
+          echo '--- build/iOS/iOS directory ---'
+          ls -l build/iOS/iOS || true
+      
+      - name: Список Xcode targets
+        run: |
+          ruby -e "require 'xcodeproj'; p Xcodeproj::Project.open('build/iOS/iOS/Unity-iPhone.xcodeproj').targets.map(&:name)"
+
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
