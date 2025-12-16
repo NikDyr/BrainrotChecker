@@ -21,6 +21,16 @@ platform :ios do
     sh "security find-identity -v -p codesigning" 
   end
 
+  desc "Install cocoapods"
+    lane :install_pods do
+      cocoapods(
+          clean: true,
+          use_bundle_exec: false,
+          repo_update: true,
+          podfile: "#{ENV['IOS_BUILD_PATH']}/iOS/Podfile"
+    )
+  end
+
   desc "Build and upload to TestFlight"
     lane :build_upload_testflight do            
         # Основная версия задаётся вручную через переменную MAJOR_VERSION
@@ -63,6 +73,8 @@ platform :ios do
         sdk: "iphoneos*",
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}.notifications",        
       ) 
+
+      install_pods
 
       build_app(
         #workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
