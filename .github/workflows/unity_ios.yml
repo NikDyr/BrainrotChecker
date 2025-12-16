@@ -93,6 +93,18 @@ jobs:
         run: |
           ruby -e "require 'xcodeproj'; p Xcodeproj::Project.open('build/iOS/iOS/Unity-iPhone.xcodeproj').targets.map(&:name)"
 
+      - name: Setup xcode versioning system
+        run: |
+          ruby <<'RUBY'
+          require 'xcodeproj'
+          project = Xcodeproj::Project.open('../build/iOS/iOS/Unity-iPhone.xcodeproj')
+          target = project.targets.find { |t| t.name == ENV['XC_TARGET_NAME'] }
+          target.build_configurations.each do |item|
+            item.build_settings['VERSIONING_SYSTEM'] = 'Apple Generic'
+          end
+          project.save
+          RUBY
+
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
