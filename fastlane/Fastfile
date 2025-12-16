@@ -70,11 +70,17 @@ platform :ios do
       end
 
       build_app(
-        workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
+        #workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
+        project: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj",
         scheme: ENV["XC_TARGET_NAME"],
         xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
-        verbose: true
+        verbose: true,
+        export_options: {
+            method: 'app-store',
+            uploadBitcode: false, 
+            compileBitcode: false,
+        }
       )
       upload_to_testflight(
         apple_id: "6756005975",
