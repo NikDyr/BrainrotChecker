@@ -64,11 +64,6 @@ platform :ios do
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}.notifications",        
       ) 
 
-      xcworkspace_path = Dir.glob("**/*.xcworkspace").first
-      if xcworkspace_path
-        ENV["XCWORKSPACE_PATH"] = xcworkspace_path
-      end
-
       build_app(
         #workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
         project: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj",
