@@ -77,8 +77,8 @@ platform :ios do
       install_pods
 
       build_app(
-        #workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
-        project: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj",
+        workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
+        #project: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj",
         scheme: ENV["XC_TARGET_NAME"],
         xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
