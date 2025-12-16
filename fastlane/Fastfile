@@ -70,7 +70,7 @@ platform :ios do
       end
 
       build_app(
-        workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace"
+        workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace",
         scheme: ENV["XC_TARGET_NAME"],
         xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
