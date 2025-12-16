@@ -99,8 +99,9 @@ jobs:
           require 'xcodeproj'
           project = Xcodeproj::Project.open('build/iOS/iOS/Unity-iPhone.xcodeproj')
           project.targets.each do |target|
-            target.build_configurations.each do |config|
+            target.build_configurations.each do |config|              
               config.build_settings['VERSIONING_SYSTEM'] = 'apple-generic'
+              puts "#{target.name} - #{config.build_settings['VERSIONING_SYSTEM']}"
             end
           end
           project.save
