@@ -145,3 +145,4 @@ jobs:
           MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
           LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER }}
           XC_TARGET_NAME: "Unity-iPhone"
+          IOS_BUILD_PATH: ${{ format('{0}/build/iOS', github.workspace) }}

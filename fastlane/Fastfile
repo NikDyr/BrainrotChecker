@@ -22,14 +22,7 @@ platform :ios do
   end
 
   desc "Build and upload to TestFlight"
-    lane :build_upload_testflight do
-
-        # Поиск .xcodeproj и .xcworkspace и создание переменных пути
-        xcodeproj_path = Dir.glob("**/*.xcodeproj").first        
-        UI.user_error!("No .xcodeproj file found!") unless xcodeproj_path
-        ENV["XCODEPROJ_PATH"] = xcodeproj_path
-        
-
+    lane :build_upload_testflight do            
         # Основная версия задаётся вручную через переменную MAJOR_VERSION
         major_version = ENV["MAJOR_VERSION"] || "1.0"
         last_uploaded_build = (ENV["LAST_UPLOADED_BUILD_NUMBER"] || "0").to_i
@@ -53,7 +46,7 @@ platform :ios do
 
       code_sign_identity = sh("security find-identity -v -p codesigning | grep 'Apple Distribution' | head -n 1 | awk -F '\"' '{print $2}'").strip
       update_code_signing_settings(
-        path: ENV["XCODEPROJ_PATH"],
+        path: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj",
         use_automatic_signing: false,
         team_id: ENV["TEAM_ID"],
         targets: ENV["XC_TARGET_NAME"],        
@@ -62,7 +55,7 @@ platform :ios do
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}",        
       )
       update_code_signing_settings(
-        path: ENV["XCODEPROJ_PATH"],
+        path: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj",
         use_automatic_signing: false,
         team_id: ENV["TEAM_ID"],
         targets: "notifications",        
@@ -77,13 +70,14 @@ platform :ios do
       end
 
       build_app(
+        workspace: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcworkspace"
         scheme: ENV["XC_TARGET_NAME"],
         xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
         verbose: true
       )
       upload_to_testflight(
-        apple_id: "6755475846",
+        apple_id: "6756005975",
         skip_waiting_for_build_processing: true)      
       sh("echo 'LAST_UPLOADED_BUILD_NUMBER=#{new_build_number}' >> $GITHUB_ENV")
    end
