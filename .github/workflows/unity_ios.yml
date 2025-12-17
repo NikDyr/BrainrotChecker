@@ -2,6 +2,15 @@ name: unity-build-and-ios-upload
 
 on:
   workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Select build type'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - short
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -71,29 +80,7 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-
-      - name: List downloaded files
-        run: ls -R build/${{ matrix.targetPlatform }}
-
-      - name: list build root
-        run: |
-          echo '--- build directory ---'
-          ls -l build || true
-
-      - name: list build/iOS
-        run: |
-          echo '--- build/iOS directory ---'
-          ls -l build/iOS || true
-
-      - name: list build/iOS/iOS
-        run: |
-          echo '--- build/iOS/iOS directory ---'
-          ls -l build/iOS/iOS || true
-      
-      - name: Список Xcode targets
-        run: |
-          ruby -e "require 'xcodeproj'; p Xcodeproj::Project.open('build/iOS/iOS/Unity-iPhone.xcodeproj').targets.map(&:name)"
-
+     
       - name: Setup xcode versioning system
         run: |
           ruby <<'RUBY'
@@ -148,3 +135,4 @@ jobs:
           APPLE_ID_DIGITS: ${{ vars.APPLE_ID_DIGITS }}
           XC_TARGET_NAME: "Unity-iPhone"
           IOS_BUILD_PATH: ${{ format('{0}/build/iOS', github.workspace) }}
+          BUILD_TYPE: ${{ github.event.inputs.build_type }}
