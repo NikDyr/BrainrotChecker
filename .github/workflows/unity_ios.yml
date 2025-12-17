@@ -89,6 +89,7 @@ jobs:
           project.targets.each do |target|
             target.build_configurations.each do |config|              
               config.build_settings['VERSIONING_SYSTEM'] = 'apple-generic'
+              config.build_settings['CURRENT_PROJECT_VERSION'] = ENV['LAST_UPLOADED_BUILD_NUMBER'] || '0'
               puts "#{target.name} - #{config.build_settings['VERSIONING_SYSTEM']}"
             end
           end
