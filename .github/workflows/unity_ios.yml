@@ -121,7 +121,12 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
           
       - name: Build & upload iOS binary
-        run: bundle exec fastlane ios build_upload_testflight
+        run: |
+          if [ "${{ github.event.inputs.build_type }}" = "short" ]; then
+            bundle exec fastlane ios short_build_upload_testflight
+          else
+            bundle exec fastlane ios build_upload_testflight
+          fi
         env:
           ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
