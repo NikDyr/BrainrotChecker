@@ -50,6 +50,7 @@ jobs:
 
 
   xcodeBuildAndUpload:
+    name: Xcode Build and Upload to TestFlight on ${{ matrix.unity-version }}
     needs: buildForAllSupportedPlatforms
     runs-on: macos-latest
     env:
@@ -144,5 +145,6 @@ jobs:
           BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER }}
           MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
           LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER }}
+          APPLE_ID_DIGITS: ${{ vars.APPLE_ID_DIGITS }}
           XC_TARGET_NAME: "Unity-iPhone"
           IOS_BUILD_PATH: ${{ format('{0}/build/iOS', github.workspace) }}
