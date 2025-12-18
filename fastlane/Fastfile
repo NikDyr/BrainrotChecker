@@ -32,12 +32,7 @@ platform :ios do
   end
 
   desc "Short build and upload to TestFlight"
-    lane :short_build_upload_testflight do                    
-        major_version = ENV["MAJOR_VERSION"] || "1.0"
-        last_uploaded_build = (ENV["LAST_UPLOADED_BUILD_NUMBER"] || "0").to_i
-        new_minor = last_uploaded_build + 1
-        new_build_number = "#{major_version}.#{new_minor}"
-        #increment_build_number(build_number: new_build_number)
+    lane :short_build_upload_testflight do
       load_asc_api_key
       setup_ci
       match(
@@ -86,12 +81,6 @@ platform :ios do
 
    desc "Full build and upload to TestFlight"
     lane :full_build_upload_testflight do            
-        # Основная версия задаётся вручную через переменную MAJOR_VERSION
-        major_version = ENV["MAJOR_VERSION"] || "1.0"
-        last_uploaded_build = (ENV["LAST_UPLOADED_BUILD_NUMBER"] || "0").to_i
-        new_minor = last_uploaded_build + 1
-        new_build_number = "#{major_version}.#{new_minor}"
-        #increment_build_number(build_number: new_build_number)
       load_asc_api_key
       setup_ci
       match(
@@ -126,7 +115,12 @@ platform :ios do
         sdk: "iphoneos*",
         profile_name: "match AppStore #{ENV["BUNDLE_IDENTIFIER"]}.notifications",        
       ) 
-
+        
+      version_number = ENV['MAJOR_VERSION'] || '1.0.0'
+      increment_version_number(version_number: version_number, xcodeproj: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj")
+      increment_build_number({ build_number: latest_testflight_build_number(version: version_number, app_identifier: ENV['BUNDLE_IDENTIFIER']) + 1, xcodeproj: "#{ENV['IOS_BUILD_PATH']}/iOS/Unity-iPhone.xcodeproj"}) 
+    
+      
       install_pods
 
       build_app(
