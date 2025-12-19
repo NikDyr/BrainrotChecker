@@ -74,8 +74,7 @@ platform :ios do
       )
       upload_to_testflight(
         apple_id: ENV["APPLE_ID_DIGITS"],
-        skip_waiting_for_build_processing: true)      
-      sh("echo 'LAST_UPLOADED_BUILD_NUMBER=#{new_build_number}' >> $GITHUB_ENV")
+        skip_waiting_for_build_processing: true)            
    end
 
 
@@ -138,7 +137,6 @@ platform :ios do
       )
       upload_to_testflight(
         apple_id: ENV["APPLE_ID_DIGITS"],
-        skip_waiting_for_build_processing: true)      
-      sh("echo 'LAST_UPLOADED_BUILD_NUMBER=#{new_build_number}' >> $GITHUB_ENV")
+        skip_waiting_for_build_processing: true)            
    end
 end
