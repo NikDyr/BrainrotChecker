@@ -134,12 +134,12 @@ jobs:
           ASC_KEY: ${{ secrets.APPSTORE_P8 }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
-          BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER }}
-          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
-          APPLE_ID_DIGITS: ${{ vars.APPLE_ID_DIGITS }}
+          TEAM_ID: ${{ vars.APPLE_TEAM_ID || secrets.APPLE_TEAM_ID }}
+          BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER || secrets.BUNDLE_IDENTIFIER }}
+          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL || secrets.MATCH_GIT_URL }}
+          APPLE_ID_DIGITS: ${{ vars.APPLE_ID_DIGITS || secrets.APPLE_ID_DIGITS }}
           XC_TARGET_NAME: "Unity-iPhone"
           IOS_BUILD_PATH: ${{ format('{0}/build/iOS', github.workspace) }}
           BUILD_TYPE: ${{ github.event.inputs.build_type }}
-          LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER }}
-          MAJOR_VERSION: ${{ vars.MAJOR_VERSION }}
+          LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER || secrets.LAST_UPLOADED_BUILD_NUMBER }}
+          MAJOR_VERSION: ${{ vars.MAJOR_VERSION || secrets.MAJOR_VERSION }}
