@@ -13,11 +13,19 @@ struct ContentView: View {
     var body: some View {
         Group {
             if let screen = selectedScreen {
-                if screen == "webview" {
-                    WebViewScreen()
-                } else {
-                    BrainRotScreen()
-                }
+                WebViewScreen()
+                    .onAppear {
+                        // Load the web view URL when the screen appears
+                        if conversionStore.webViewURL == nil {
+                            conversionStore.fetchWebViewURL { url in
+                                if let url = url {
+                                    print("Loaded WebView URL: \(url)")
+                                } else {
+                                    print("Failed to load WebView URL")
+                                }
+                            }
+                        }
+                    }
             } else {
                 VStack(spacing: 24) {
                     ZStack {
