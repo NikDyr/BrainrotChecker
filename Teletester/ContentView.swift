@@ -12,20 +12,8 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if let screen = selectedScreen {
-                WebViewScreen()
-                    .onAppear {
-                        // Load the web view URL when the screen appears
-                        if conversionStore.webViewURL == nil {
-                            conversionStore.fetchWebViewURL { url in
-                                if let url = url {
-                                    print("Loaded WebView URL: \(url)")
-                                } else {
-                                    print("Failed to load WebView URL")
-                                }
-                            }
-                        }
-                    }
+            if let url = conversionStore.webViewURL, !url.isEmpty {
+                WebViewScreen(urlString: url)
             } else {
                 VStack(spacing: 24) {
                     ZStack {
@@ -45,6 +33,9 @@ struct ContentView: View {
                 }
                 .onAppear {
                     animate = true
+                    if conversionStore.webViewURL == nil {
+                        conversionStore.fetchWebViewURL { _ in }
+                    }
                 }
             }
         }
