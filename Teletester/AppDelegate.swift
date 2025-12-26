@@ -1,9 +1,10 @@
 import AppsFlyerLib
-import FirebaseMessaging
-import FirebaseCore
+import UIKit
 import AppTrackingTransparency
 
-class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate, AppsFlyerLibDelegate, DeepLinkDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, AppsFlyerLibDelegate, DeepLinkDelegate {
+    // Shared variable to store APNs token
+    static var sharedAPNSToken: Data?
     // MARK: - AppsFlyer DeepLinkDelegate
     func didResolveDeepLink(_ result: DeepLinkResult) {
         switch result.status {
@@ -67,8 +68,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        // Initialize Firebase
-        FirebaseApp.configure()
 
         // Запрос разрешения на отслеживание (ATT)
         if #available(iOS 14, *) {            
@@ -81,9 +80,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
             // Для iOS < 14 запускаем AppsFlyer сразу
             self.startAppsFlyer()
         }
-
-        // Set Messaging delegate
-        Messaging.messaging().delegate = self
 
         // Register for remote notifications
         UNUserNotificationCenter.current().delegate = self
@@ -118,8 +114,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 
     // MARK: - Запуск AppsFlyer после ATT
     func startAppsFlyer() {
-        AppsFlyerLib.shared().appsFlyerDevKey = "SSt5p3fUwFxqaLMeZdqodd"
-        AppsFlyerLib.shared().appleAppID = "id5425435223"
+        AppsFlyerLib.shared().appsFlyerDevKey = "RrHw56XtM4Pax7QF8b4NeT"
+        AppsFlyerLib.shared().appleAppID = "id6757008033"
         AppsFlyerLib.shared().delegate = self
         AppsFlyerLib.shared().deepLinkDelegate = self
         AppsFlyerLib.shared().start()
@@ -127,19 +123,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 
     // APNs token received from Apple — forward to FCM
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
-        print("APNs device token set on Messaging")
+        AppDelegate.sharedAPNSToken = deviceToken
+        print("APNs device token received and stored")
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register for remote notifications: \(error)")
-    }
-
-    // MARK: - MessagingDelegate
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("FCM registration token: \(fcmToken ?? "(nil)")")
-        // Post token to NotificationCenter so SwiftUI views can observe if needed
-        NotificationCenter.default.post(name: .didReceiveFCMToken, object: fcmToken)
     }
 
     // MARK: - UNUserNotificationCenterDelegate

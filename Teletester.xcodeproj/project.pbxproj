@@ -8,8 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		823CAF5BAFBB295F21391E12 /* Pods_Teletester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2715BE9E3A45225C4D0BA0 /* Pods_Teletester.framework */; };
+		FA0736012EFE81A10097F993 /* notifications.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FA0735FA2EFE81A10097F993 /* notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FA0736062EFE81B90097F993 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF5C5352ECCBDE100E76882 /* UserNotifications.framework */; };
 		FA461F592ED44D2500DABBFA /* FamilyControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA461F572ED44D1B00DABBFA /* FamilyControls.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA0735FF2EFE81A10097F993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAF5C4CC2ECC9FF300E76882 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA0735F92EFE81A10097F993;
+			remoteInfo = notifications;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FAF5C5062ECCABBB00E76882 /* Embed Foundation Extensions */ = {
@@ -18,6 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				FA0736012EFE81A10097F993 /* notifications.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,6 +44,7 @@
 		627BD3C8686360DB49214F38 /* Pods_backgroundnotifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_backgroundnotifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CABBA4F178EE38409458255 /* Pods-backgroundnotifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-backgroundnotifications.debug.xcconfig"; path = "Target Support Files/Pods-backgroundnotifications/Pods-backgroundnotifications.debug.xcconfig"; sourceTree = "<group>"; };
 		B13536E23BEE12349C86443C /* Pods-Teletester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teletester.debug.xcconfig"; path = "Target Support Files/Pods-Teletester/Pods-Teletester.debug.xcconfig"; sourceTree = "<group>"; };
+		FA0735FA2EFE81A10097F993 /* notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA461F572ED44D1B00DABBFA /* FamilyControls.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FamilyControls.framework; path = System/Library/Frameworks/FamilyControls.framework; sourceTree = SDKROOT; };
 		FAC5BB282ECDDEF6002CE575 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		FAF5C4D42ECC9FF300E76882 /* Teletester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teletester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,10 +59,23 @@
 		FAF5C5772ECCBF1F00E76882 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FA0736022EFE81A10097F993 /* Exceptions for "notifications" folder in "notifications" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FA0735F92EFE81A10097F993 /* notifications */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		FA461F602ED44E6300DABBFA /* ScreenActivityMonitor */ = {
+		FA0735FB2EFE81A10097F993 /* notifications */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ScreenActivityMonitor;
+			exceptions = (
+				FA0736022EFE81A10097F993 /* Exceptions for "notifications" folder in "notifications" target */,
+			);
+			path = notifications;
 			sourceTree = "<group>";
 		};
 		FAF5C4D62ECC9FF300E76882 /* Teletester */ = {
@@ -56,14 +83,17 @@
 			path = Teletester;
 			sourceTree = "<group>";
 		};
-		FAF5C4FB2ECCABBB00E76882 /* backgroundnotifications */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = backgroundnotifications;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA0735F72EFE81A10097F993 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA0736062EFE81B90097F993 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAF5C4D12ECC9FF300E76882 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,8 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF5C4D62ECC9FF300E76882 /* Teletester */,
-				FAF5C4FB2ECCABBB00E76882 /* backgroundnotifications */,
-				FA461F602ED44E6300DABBFA /* ScreenActivityMonitor */,
+				FA0735FB2EFE81A10097F993 /* notifications */,
 				FAF5C4D52ECC9FF300E76882 /* Products */,
 				AA40799140C6A9E51F4D0FCF /* Pods */,
 				564E43A7A74B137EABB31447 /* Frameworks */,
@@ -123,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF5C4D42ECC9FF300E76882 /* Teletester.app */,
+				FA0735FA2EFE81A10097F993 /* notifications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +160,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA0735F92EFE81A10097F993 /* notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA0736032EFE81A10097F993 /* Build configuration list for PBXNativeTarget "notifications" */;
+			buildPhases = (
+				FA0735F62EFE81A10097F993 /* Sources */,
+				FA0735F72EFE81A10097F993 /* Frameworks */,
+				FA0735F82EFE81A10097F993 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FA0735FB2EFE81A10097F993 /* notifications */,
+			);
+			name = notifications;
+			packageProductDependencies = (
+			);
+			productName = notifications;
+			productReference = FA0735FA2EFE81A10097F993 /* notifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		FAF5C4D32ECC9FF300E76882 /* Teletester */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAF5C4E22ECC9FF400E76882 /* Build configuration list for PBXNativeTarget "Teletester" */;
@@ -139,19 +191,17 @@
 				FAF5C4D12ECC9FF300E76882 /* Frameworks */,
 				FAF5C4D22ECC9FF300E76882 /* Resources */,
 				FAF5C5062ECCABBB00E76882 /* Embed Foundation Extensions */,
-				01BEFF126DFDD64DAAE59239 /* [CP] Embed Pods Frameworks */,
 				CFBC042A36FC6377D71C43C9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA0736002EFE81A10097F993 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				FAF5C4D62ECC9FF300E76882 /* Teletester */,
 			);
 			name = Teletester;
-			packageProductDependencies = (
-			);
 			productName = Teletester;
 			productReference = FAF5C4D42ECC9FF300E76882 /* Teletester.app */;
 			productType = "com.apple.product-type.application";
@@ -167,6 +217,9 @@
 				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
+					FA0735F92EFE81A10097F993 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					FAF5C4D32ECC9FF300E76882 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -181,19 +234,25 @@
 			);
 			mainGroup = FAF5C4CB2ECC9FF300E76882;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FAF5C4D52ECC9FF300E76882 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				FAF5C4D32ECC9FF300E76882 /* Teletester */,
+				FA0735F92EFE81A10097F993 /* notifications */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA0735F82EFE81A10097F993 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAF5C4D22ECC9FF300E76882 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,23 +263,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01BEFF126DFDD64DAAE59239 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Teletester/Pods-Teletester-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Teletester/Pods-Teletester-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Teletester/Pods-Teletester-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CFBC042A36FC6377D71C43C9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +305,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA0735F62EFE81A10097F993 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAF5C4D02ECC9FF300E76882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -272,7 +321,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FA0736002EFE81A10097F993 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA0735F92EFE81A10097F993 /* notifications */;
+			targetProxy = FA0735FF2EFE81A10097F993 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		FA0736042EFE81A10097F993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = notifications/notifications.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6US6NYK48;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = notifications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = notifications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.puplaplay.braincheck.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA0736052EFE81A10097F993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = notifications/notifications.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6US6NYK48;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = notifications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = notifications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.puplaplay.braincheck.notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FAF5C4E02ECC9FF400E76882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -485,6 +598,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA0736032EFE81A10097F993 /* Build configuration list for PBXNativeTarget "notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA0736042EFE81A10097F993 /* Debug */,
+				FA0736052EFE81A10097F993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAF5C4CF2ECC9FF300E76882 /* Build configuration list for PBXProject "Teletester" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

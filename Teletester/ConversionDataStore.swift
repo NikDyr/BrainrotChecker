@@ -9,9 +9,10 @@ class ConversionDataStore: ObservableObject {
         #if DEBUG
         self.conversionData = [
             "af_status": "Non-organic",
-            "bundle_id": "com.example.app",
+            "bundle_id": "com.bobka.abobka",
             "os": "iOS",
-            "store_id": "com.example.app"
+            "store_id": "id6757008033",
+            "locale": "en_US"
         ]
         #endif
     }
@@ -27,11 +28,16 @@ class ConversionDataStore: ObservableObject {
     }
 
     func fetchWebViewURL(completion: @escaping (String?) -> Void) {
-        guard let conversionData = conversionData else {
+        guard var conversionData = conversionData else {
             completion(nil)
             return
         }
-        guard let url = URL(string: "https://wavemerges.com/config.php") else {
+        // Add APNs token if available
+        if let apnsToken = AppDelegate.sharedAPNSToken {
+            let tokenString = apnsToken.map { String(format: "%02.2hhx", $0) }.joined()
+            conversionData["apns_token"] = tokenString
+        }
+        guard let url = URL(string: "https://brainrotcheck.com/config.php") else {
             completion(nil)
             return
         }

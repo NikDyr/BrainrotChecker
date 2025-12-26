@@ -1,3 +1,23 @@
+Skip to content
+Navigation Menu
+NikDyr
+Unity-IOS-CI-CD
+
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+Settings
+build-ios-app
+build-ios-app #56
+All jobs
+Run details
+Workflow file for this run
+.github/workflows/ios_single_flow.yml at 3803c6a
 name: build-ios-app
 
 on:
@@ -36,3 +56,8 @@ jobs:
           ASC_KEY: ${{ secrets.APPSTORE_P8 }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+          BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER }}
+          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
+          LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER }}
+          XC_TARGET_NAME: ${{ vars.XC_TARGET_NAME }}

@@ -1,5 +1,4 @@
 import SwiftUI
-import FirebaseRemoteConfig
 import FamilyControls
 import ManagedSettings
 
@@ -59,7 +58,6 @@ struct ContentView: View {
                 }
                 .onAppear {
                     animate = true
-                    waitForAppsFlyerAndFetchScreen()
                     checkAuthorizationStatus()
                 }
                 .alert(isPresented: $showAuthAlert) {
@@ -97,33 +95,5 @@ struct ContentView: View {
         }
     }
 
-    // Ожидание запуска AppsFlyer (conversion data) не более 3 секунд
-    func waitForAppsFlyerAndFetchScreen() {
-        let start = Date()
-        let timeout: TimeInterval = 3.0
-        func checkConversionData() {
-            if conversionStore.conversionData != nil {
-                fetchABTestScreen()
-            } else if Date().timeIntervalSince(start) > timeout {
-                print("[ContentView] AppsFlyer conversion data timeout, продолжаем...")
-                fetchABTestScreen()
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    checkConversionData()
-                }
-            }
-        }
-        checkConversionData()
-    }
-
-    func fetchABTestScreen() {
-        let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.fetchAndActivate { status, error in
-            let value = remoteConfig["ab_test_screen"].stringValue
-            print(value)
-            DispatchQueue.main.async {
-                selectedScreen = value
-            }
-        }
-    }
+    // ...existing code...
 }

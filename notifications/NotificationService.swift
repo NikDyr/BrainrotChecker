@@ -15,14 +15,43 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
-        
-        if let bestAttemptContent = bestAttemptContent {
-            // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
-            
+
+        guard let bestAttemptContent = bestAttemptContent else {
+            contentHandler(request.content)
+            return
+        }
+
+        // Check for image URL in APNs payload ("image-url" key in aps or custom payload)
+        if let imageURLString = request.content.userInfo["image-url"] as? String, let imageURL = URL(string: imageURLString) {
+            downloadImage(from: imageURL) { attachment in
+                if let attachment = attachment {
+                    bestAttemptContent.attachments = [attachment]
+                }
+                contentHandler(bestAttemptContent)
+            }
+        } else {
             contentHandler(bestAttemptContent)
         }
     }
+        private func downloadImage(from url: URL, completion: @escaping (UNNotificationAttachment?) -> Void) {
+            let task = URLSession.shared.downloadTask(with: url) { (downloadedUrl, response, error) in
+                guard let downloadedUrl = downloadedUrl else {
+                    completion(nil)
+                    return
+                }
+                let fileManager = FileManager.default
+                let tmpDir = URL(fileURLWithPath: NSTemporaryDirectory())
+                let uniqueURL = tmpDir.appendingPathComponent(UUID().uuidString + ".jpg")
+                do {
+                    try fileManager.moveItem(at: downloadedUrl, to: uniqueURL)
+                    let attachment = try UNNotificationAttachment(identifier: "image", url: uniqueURL, options: nil)
+                    completion(attachment)
+                } catch {
+                    completion(nil)
+                }
+            }
+            task.resume()
+        }
     
     override func serviceExtensionTimeWillExpire() {
         // Called just before the extension will be terminated by the system.
