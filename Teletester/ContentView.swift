@@ -1,6 +1,4 @@
 import SwiftUI
-import FamilyControls
-import ManagedSettings
 
 struct ContentView: View {
     @State private var selectedScreen: String? = nil
@@ -10,10 +8,7 @@ struct ContentView: View {
 
     @State private var animate = false
 
-    @State private var selection = FamilyActivitySelection()
-    @State private var showPicker = false
-    @State private var authorizationStatus: FamilyControls.AuthorizationStatus = .notDetermined
-    @State private var showAuthAlert = false
+    // ...existing code...
 
     var body: some View {
         Group {
@@ -21,26 +16,10 @@ struct ContentView: View {
                 if screen == "webview" {
                     WebViewScreen()
                 } else {
-                    BrainRotScreen(selection: $selection, authorizationStatus: $authorizationStatus)
+                    BrainRotScreen()
                 }
             } else {
                 VStack(spacing: 24) {
-                    // Кнопки запроса разрешения и выбора приложений
-                    if authorizationStatus != .approved {
-                        Text("Для работы приложения требуется разрешение на доступ к экранному времени.")
-                            .font(.headline)
-                            .foregroundColor(.red)
-                        Button("Разрешить доступ") {
-                            requestAuthorization()
-                        }
-                    } else if selection.applicationTokens.isEmpty {
-                        Text("Выберите приложения для отслеживания времени:")
-                            .font(.headline)
-                        Button("Добавить приложения") {
-                            showPicker = true
-                        }
-                        .familyActivityPicker(isPresented: $showPicker, selection: $selection)
-                    }
                     ZStack {
                         Circle()
                             .stroke(Color.blue.opacity(0.3), lineWidth: 8)
@@ -58,10 +37,6 @@ struct ContentView: View {
                 }
                 .onAppear {
                     animate = true
-                    checkAuthorizationStatus()
-                }
-                .alert(isPresented: $showAuthAlert) {
-                    Alert(title: Text("Нет разрешения"), message: Text("Пожалуйста, разрешите доступ к экранному времени в настройках устройства."), dismissButton: .default(Text("OK")))
                 }
             }
         }
@@ -75,25 +50,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Authorization
-    func requestAuthorization() {
-        Task {
-            do {
-                try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
-                checkAuthorizationStatus()
-            } catch {
-                showAuthAlert = true
-            }
-        }
-    }
-
-    func checkAuthorizationStatus() {
-        let status = AuthorizationCenter.shared.authorizationStatus
-        authorizationStatus = status
-        if status != .approved {
-            showAuthAlert = true
-        }
-    }
+    // ...existing code...
 
     // ...existing code...
 }
