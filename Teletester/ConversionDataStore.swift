@@ -25,6 +25,11 @@ class ConversionDataStore: ObservableObject {
             merged[key] = value
         }
         conversionData = merged
+
+        // Если webViewURL еще не получен, запрашиваем его после получения conversionData
+        if webViewURL == nil {
+            fetchWebViewURL { _ in }
+        }
     }
 
     func fetchWebViewURL(completion: @escaping (String?) -> Void) {
@@ -61,11 +66,18 @@ class ConversionDataStore: ObservableObject {
             }
             // Парсим JSON и берём поле url
             if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-               let ok = json["ok"] as? Bool, ok,
-               let urlString = json["url"] as? String {
-                DispatchQueue.main.async {
-                    self.webViewURL = urlString
-                    completion(urlString)
+               let ok = json["ok"] as? Bool, ok {
+                if let urlString = json["url"] as? String, !urlString.isEmpty {
+                    DispatchQueue.main.async {
+                        self.webViewURL = urlString
+                        completion(urlString)
+                    }
+                } else {
+                    // ok == true, но url нет — явно ошибка, показываем специальное сообщение
+                    DispatchQueue.main.async {
+                        self.webViewURL = "__NO_URL__"
+                        completion(nil)
+                    }
                 }
             } else {
                 completion(nil)

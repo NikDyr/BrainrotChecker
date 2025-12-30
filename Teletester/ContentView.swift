@@ -12,8 +12,18 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if let url = conversionStore.webViewURL, !url.isEmpty {
+            if let url = conversionStore.webViewURL, !url.isEmpty, url != "__NO_URL__" {
                 WebViewScreen(urlString: url)
+            } else if conversionStore.webViewURL == "__NO_URL__" {
+                VStack(spacing: 24) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                        .foregroundColor(.orange)
+                    Text("Не удалось получить ссылку для WebView. Попробуйте позже.")
+                        .font(.headline)
+                        .foregroundColor(.orange)
+                }
             } else {
                 VStack(spacing: 24) {
                     ZStack {
@@ -33,9 +43,6 @@ struct ContentView: View {
                 }
                 .onAppear {
                     animate = true
-                    if conversionStore.webViewURL == nil {
-                        conversionStore.fetchWebViewURL { _ in }
-                    }
                 }
             }
         }
