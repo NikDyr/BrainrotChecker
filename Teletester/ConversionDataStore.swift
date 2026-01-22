@@ -13,7 +13,7 @@ class ConversionDataStore: ObservableObject {
             "locale": Locale.current.identifier
         ]
         // af_id: если нет, генерируем uuid
-        if let afId = AppsFlyerLib.shared().getAppsFlyerUID?() ?? AppsFlyerLib.shared().getAppsFlyerUID() {
+        if let afId = AppsFlyerLib.shared().getAppsFlyerUID() as String? {
             testData["af_id"] = afId
         } else {
             testData["af_id"] = UUID().uuidString
@@ -45,7 +45,7 @@ class ConversionDataStore: ObservableObject {
         // locale всегда актуальная
         merged["locale"] = Locale.current.identifier
         // af_id: если нет, генерируем uuid
-        if let afId = AppsFlyerLib.shared().getAppsFlyerUID?() ?? AppsFlyerLib.shared().getAppsFlyerUID() {
+        if let afId = AppsFlyerLib.shared().getAppsFlyerUID() as String? {
             merged["af_id"] = afId
         } else {
             merged["af_id"] = UUID().uuidString
