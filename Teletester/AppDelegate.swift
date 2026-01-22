@@ -70,7 +70,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
         // Запрос разрешения на отслеживание (ATT)
-        if #available(iOS 14, *) {            
+        if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization { status in
                 print("ATT status: \(status.rawValue)")
                 // После запроса ATT запускаем AppsFlyer
@@ -81,7 +81,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
             self.startAppsFlyer()
         }
 
-        // Register for remote notifications
+        // Запрос разрешения на уведомления и регистрация для пушей только после разрешения
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
@@ -90,9 +90,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
                 return
             }
             print("Notification permission granted: \(granted)")
-        }
-        DispatchQueue.main.async {
-            application.registerForRemoteNotifications()
+            if granted {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+            }
         }
 
         return true
