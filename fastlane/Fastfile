@@ -63,8 +63,7 @@ platform :ios do
       ) 
       build_app(
         scheme: ENV["XC_TARGET_NAME"],
-        sdk: "iphoneos",
-        xcargs: "-allowProvisioningUpdates -destination 'generic/platform=iOS'",
+        xcargs: "-allowProvisioningUpdates",
         export_team_id: ENV["TEAM_ID"],
         verbose: true
       )
