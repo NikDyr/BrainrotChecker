@@ -12,6 +12,12 @@ class ConversionDataStore: ObservableObject {
             "os": "iOS",
             "locale": Locale.current.identifier
         ]
+        // af_id: если нет, генерируем uuid
+        if let afId = AppsFlyerLib.shared().getAppsFlyerUID?() ?? AppsFlyerLib.shared().getAppsFlyerUID() {
+            testData["af_id"] = afId
+        } else {
+            testData["af_id"] = UUID().uuidString
+        }
         if let bundleId = Bundle.main.bundleIdentifier {
             testData["bundle_id"] = bundleId
         }
@@ -36,9 +42,17 @@ class ConversionDataStore: ObservableObject {
         if let bundleId = Bundle.main.bundleIdentifier {
             merged["bundle_id"] = bundleId
         }
+        // locale всегда актуальная
+        merged["locale"] = Locale.current.identifier
+        // af_id: если нет, генерируем uuid
+        if let afId = AppsFlyerLib.shared().getAppsFlyerUID?() ?? AppsFlyerLib.shared().getAppsFlyerUID() {
+            merged["af_id"] = afId
+        } else {
+            merged["af_id"] = UUID().uuidString
+        }
         // Ensure required keys exist (even if nil)
         let requiredKeys: [String] = [
-            "os", "country", "external_id", "push_token", "locale", "bundle_id"
+            "os", "country", "external_id", "push_token", "locale", "bundle_id", "af_id"
         ]
         for key in requiredKeys {
             if merged[key] == nil {
